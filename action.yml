@@ -68,7 +68,7 @@ runs:
           previousArchive <- ctv::check_ctv_packages(
            paste0("https://raw.githubusercontent.com/${{ inputs.user }}/",
            basename(getwd()), "/main/", basename(getwd()), ".md"
-          )[["Packages in packagelist but archived on CRAN"]]
+          ))[["Packages in packagelist but archived on CRAN"]]
           newArchives <- setdiff(archived, previousArchive)
           if (length(newArchives)) {
               stop(
@@ -86,7 +86,7 @@ runs:
         urls <- sub(".*href=\"(.*)\".*", "\\1", links)
         ok <- RCurl::url.exists(urls)
         if (any(!ok)) {
-          message(paste0("::warning file=", basename(getwd()), ".md::Inoperational links")
+          message(paste0("::warning file=", basename(getwd()), ".md::Inoperational links"))
           stop("URLs did not return OK status:\n - ",
               paste0(names(ok)[!ok], collapse = "\n - ")
           )
